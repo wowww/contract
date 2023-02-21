@@ -163,7 +163,8 @@ contract StakingPool is UUPSUpgradeable, IStakingPool, RouterRoleUpgradeable {
     function beforeStake(uint daoId) external override onlyRouter returns(uint) {
         DaoInfo memory info = getDaoInfo[daoId];
         uint dtBalance = IERC20(info.dt).balanceOf(address(this));
-        uint gtBalance = IERC20(info.gt).totalSupply(); // 총 발행량 g.Wonder totalSupply -> 스테이킹풀에서 어드레스를 각각 받는다 => 컴포넌트로 만들기
+        uint gtBalance = IERC20(info.gt).totalSupply(); 
+        // 총 발행량 g.Wonder totalSupply -> 스테이킹풀에서 어드레스를 각각 받는다 => 컴포넌트로 만들기
         // totalSupply를 가져와서 내가 가져오 gt 빼고
         if (gtBalance == 0 && dtBalance != 0) {
             totalStakedAmount[daoId] = 0;
